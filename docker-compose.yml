@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+    janus:
+        image: atyenoria/janus-webrtc-gateway-docker
+        network_mode: host
+        volumes:
+            - type: bind
+              source: ./janus/conf
+              target: /usr/local/etc/janus
+    nginx:
+        image: alfg/nginx-rtmp
+        ports:
+            - '1935:1935'
+            - '8080:80'
+        volumes:
+            - type: bind
+              source: ./videoroom
+              target: /var/www/pub-sub
+            - type: bind
+              source: ./hls/nginx.conf
+              target: /etc/nginx/nginx.conf.template
+        depends_on:
+            - janus

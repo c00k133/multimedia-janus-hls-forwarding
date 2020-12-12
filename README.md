@@ -8,18 +8,6 @@ The team/pair for this project consists of:
 
 ---
 
-## Setup
-
-### Janus Gateway
-
-_These steps assume that a Janus Docker image is already built with the tag_ `atyenoria/janus-webrtc-gateway-docker`.
-1. Make any Janus configuration changes to the configuration files in `janus/conf`.
-2. Execute the script `janus/bin/run`
-    - This will create and run an ephemereal Docker container with Janus installed.
-The Janus gateway is now accessible at `localhost:8088`.
-
----
-
 ## Tools
 
 Janus Gateway:
