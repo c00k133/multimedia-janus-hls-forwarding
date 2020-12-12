@@ -30,3 +30,6 @@ Docker build tools for pre-defined Janus instance:
 
 Janus VideoRoom plugin:
 > [https://janus.conf.meetecho.com/docs/videoroom.html](https://janus.conf.meetecho.com/docs/videoroom.html)
+
+Docker image for nginx with RTMP configuration:
+> [https://github.com/alfg/docker-nginx-rtmp](https://github.com/alfg/docker-nginx-rtmp)
