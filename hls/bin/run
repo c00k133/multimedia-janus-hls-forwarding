@@ -7,11 +7,6 @@ import os
 IMAGE_TAG = 'alfg/nginx-rtmp'
 CONTAINER_NAME = 'hls-rtmp'
 
-script_full_path = os.path.realpath(__file__)
-project_root = Path(script_full_path).parent.parent.parent
-videoroom_dir = project_root.joinpath(Path('videoroom'))
-nginx_serve_dir = '/usr/local/nginx/html'
-
 client = docker.from_env()
 
 try:
@@ -19,6 +14,16 @@ try:
     running_container.stop()
 except Exception:
     pass
+
+script_full_path = os.path.realpath(__file__)
+project_root = Path(script_full_path).parent.parent.parent
+
+videoroom_dir = project_root.joinpath(Path('videoroom'))
+nginx_serve_dir = '/var/www/pub-sub'
+
+hls_dir = project_root.joinpath(Path('hls'))
+nginx_conf = hls_dir.joinpath('nginx.conf')
+nginx_server_conf = '/etc/nginx/nginx.conf.template'
 
 client.containers.run(
     IMAGE_TAG,
@@ -33,6 +38,10 @@ client.containers.run(
         videoroom_dir: {
             'bind': nginx_serve_dir,
             'mode': 'rw',
-        }
+        },
+        nginx_conf: {
+            'bind': nginx_server_conf,
+            'mode': 'rw',
+        },
     },
 )
