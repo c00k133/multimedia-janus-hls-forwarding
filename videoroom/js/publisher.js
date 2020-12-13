@@ -93,6 +93,29 @@ $(document).ready(function () {
                                         $("#videolocal").parent().parent().unblock();
                                         if (!on)
                                             return;
+
+                                        const rtpforwarding = {
+                                            request: 'rtp_forward',
+                                            room: myroom,
+                                            publisher_id: myid,
+                                            host: '127.0.0.1',
+                                            audio_port: 7500,
+                                            audio_pt: 111,
+                                            video_port: 7000,
+                                            video_pt: 96,
+                                            secret: 'adminpwd'
+                                        };
+
+                                        sfutest.send({
+                                            message: rtpforwarding,
+                                            success: function (result) {
+                                                console.log('RTP SUCCESS:', result);
+                                            },
+                                            error: function(error) {
+                                                console.log('RTP ERROR:', error);
+                                            }
+                                        });
+
                                         $('#publish').remove();
                                         // This controls allows us to override the global room bitrate cap
                                         $('#bitrate').parent().parent().removeClass('hide').show();
@@ -385,23 +408,6 @@ function publishOwnFeed(useAudio) {
                 // allowed codecs in a room. With respect to the point (2) above,
                 // refer to the text in janus.plugin.videoroom.jcfg for more details
                 sfutest.send({message: publish, jsep: jsep});
-
-                var rtpforwarding = {
-                    request: "rtp_forward",
-                    room: myroom,
-                    publisher_id: myid,
-                    host: "192.168.1.113",
-                    audio_port: 7500,
-                    video_port: 7000,
-                    secret:'adminpwd'
-                }
-
-                sfutest.send({
-                    message: rtpforwarding,
-                    success: function (result) {
-                        console.log(result);
-                    }
-                });
             },
             error: function (error) {
                 Janus.error("WebRTC error:", error);
