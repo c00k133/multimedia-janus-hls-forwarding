@@ -21,3 +21,10 @@ Janus VideoRoom plugin:
 
 Docker image for nginx with RTMP configuration:
 > [https://github.com/alfg/docker-nginx-rtmp](https://github.com/alfg/docker-nginx-rtmp)
+
+---
+
+## Sources
+
+Stopwatch video:
+> [https://www.youtube.com/watch?v=9cQT4urTlXM](https://www.youtube.com/watch?v=9cQT4urTlXM)
