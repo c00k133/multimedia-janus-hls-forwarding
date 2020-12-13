@@ -24,6 +24,28 @@ Docker image for nginx with RTMP configuration:
 
 ---
 
+## Setup
+
+### Configuration
+
+The Janus Docker image is unfortunately not published to a registry, so you will have to build the image yourself.
+To work out of the box with this setup you must tag the image as `atyenoria/janus-webrtc-gateway-docker`.
+The repository has a pre-configured Makefile for this purpose.
+**Note**: building this image might take a while.
+
+### Execution
+
+The system requires [`docker-compose`](https://docs.docker.com/compose/) to run:
+> docker-compose up
+
+After this the project webpage is available at:
+> [localhost:8080](http://localhost:8080)
+
+To catch the RTP forwarded stream you also have to run the following script (the final stream will be available at [localhost:8080/live/janus/index.m3u8](http://localhost:8080/live/janus/index.m3u8)):
+> ./bin/ffmpeg-rtp-to-rtmp
+
+---
+
 ## Sources
 
 Stopwatch video:
