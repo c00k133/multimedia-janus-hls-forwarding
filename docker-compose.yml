@@ -14,6 +14,12 @@ services:
         ports:
             - '1935:1935'
             - '8080:80'
+            - target: 7500
+              published: 7500
+              protocol: udp
+            - target: 7000
+              published: 7000
+              protocol: udp
         volumes:
             - type: bind
               source: ./videoroom
@@ -21,3 +27,6 @@ services:
             - type: bind
               source: ./hls/nginx.conf
               target: /etc/nginx/nginx.conf.template
+            - type: bind
+              source: ./hls/janus.sdp
+              target: /janus.sdp
