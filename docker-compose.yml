@@ -5,8 +5,8 @@ services:
         network_mode: host
         volumes:
             - type: bind
-              source: ./janus/conf
-              target: /usr/local/etc/janus
+              source: ./janus/conf/janus.plugin.videoroom.jcfg
+              target: /usr/local/etc/janus/janus.plugin.videoroom.jcfg
         depends_on:
             - nginx
     nginx:
