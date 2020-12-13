@@ -84,6 +84,9 @@ room-5678: {
 }
 
 room-9876: {
-	description = "Stream room"
-	publishers = 1
+    description = "Stream room"
+    publishers = 1
+    bitrate = 128000
+    fir_freq = 10
+    videocodec = "vp8"
 }
