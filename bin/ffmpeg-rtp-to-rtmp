@@ -1,0 +1,8 @@
+#!/bin/bash
+docker-compose exec nginx \
+    ffmpeg \
+        -analyzeduration 300M -probesize 300M \
+        -protocol_whitelist file,udp,rtp \
+        -i /janus.sdp \
+        -c:v libx264 -an -f flv -s 480x360 -max_muxing_queue_size 1024 \
+        rtmp://localhost:1935/hls/janus
